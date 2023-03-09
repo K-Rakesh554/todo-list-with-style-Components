@@ -41,9 +41,9 @@ export const InputLabel = styled.label`
 `;
 
 export const Input = styled.input.attrs((props) => ({
-  type: 'text',
-  size: props.size || '1em',
-  defaultValue: '',
+  type: props.type || 'text',
+  size: '2rem',
+  defaultValue: props.defaultValue || '',
 }))`
 border:2px solid #00a8ff;
 margin:10px;
@@ -57,13 +57,6 @@ width:25%;
   background-color:#1B9CFC;
   color:white;
 }
-`;
-
-export const DaysInput = styled(Input).attrs((props) => ({
-  type: 'number',
-  size: props.size || '2em',
-  defaultValue: 0,
-}))`
 `;
 
 export const AddTaskBtn = styled.button`

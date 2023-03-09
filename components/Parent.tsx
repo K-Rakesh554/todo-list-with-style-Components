@@ -6,7 +6,6 @@ import ToDoItem from './toDoItem';
 import Navbar from './navbar';
 import {
   AddTaskBtn,
-  DaysInput,
   Input,
   InputLabel,
   Inputsection,
@@ -139,7 +138,8 @@ export default function Parent() {
         </InputLabel>
 
         <Input
-          size="10px"
+          type="text"
+          defaultValue=""
           onChange={handledatadisplay}
           ref={task}
           placeholder="Enter your task..."
@@ -150,13 +150,14 @@ export default function Parent() {
           {' '}
           <label> BALL-PARK YOUR GOAL:</label>{' '}
         </InputLabel>
-        <DaysInput
-          size="10px"
+        <Input
+          type="number"
+          defaultValue="0"
           onChange={handledatadisplay}
           ref={deadline}
           placeholder="deadline in days.."
           name="deadline"
-        ></DaysInput>
+        ></Input>
 
         <AddTaskBtn onClick={handledatapush} id="button">
           Add-task
@@ -168,6 +169,7 @@ export default function Parent() {
         />
       </Inputsection>
 
+      {/* outputarea */}
       <div className="outputarea">
         <table id="task " cellPadding="20" cellSpacing="20">
           <thead id="tablehead">
