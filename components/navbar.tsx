@@ -40,7 +40,7 @@ function Navbar() {
         alt="logoimg"
       />
 
-      <Title>📃 To-Do list Application</Title>
+      <Title>📝 To-Do list Application</Title>
       <DateDisplay>📅 Date:{displaydate.toLocaleDateString()}</DateDisplay>
       <ToggleDarkTheme> 👆dark theme</ToggleDarkTheme>
     </Header>

@@ -1,19 +1,7 @@
-* {
-  margin: 0px;
-  padding: 0px;
-}
 #todo {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-}
-
-#todo td {
-  border: 2px solid rgb(0, 0, 0);
-  text-align: center;
-  height: 5px;
-  width: 300px;
-  vertical-align: center;
 }
 
 #todo button {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, ChangeEvent, useRef, useCallback } from 'react';
-import '../style.css';
+
 import { Itask } from '../interface';
 import ToDoItem from './toDoItem';
 import Navbar from './navbar';
@@ -10,7 +10,7 @@ import {
   InputLabel,
   Inputsection,
 } from '../Styled components/inputarea';
-import { Outputarea } from '../Styled components/outputarea';
+import { Outputarea, Tablestyle } from '../Styled components/outputarea';
 
 export default function Parent() {
   let [todolist, setToDoList] = useState<Itask[]>([]);
@@ -172,12 +172,12 @@ export default function Parent() {
 
       {/* outputarea */}
       <Outputarea>
-        <table id="task " cellPadding="20" cellSpacing="20">
-          <thead id="tablehead">
+        <Tablestyle cellPadding="20" cellSpacing="20">
+          <thead>
             <tr>
-              <th>task</th>
-              <th>days to complete</th>
-              <th>edit or delete</th>
+              <th>Task</th>
+              <th>Days to Complete</th>
+              <th>Edit or Delete</th>
             </tr>
           </thead>
           <tbody id="todo">
@@ -193,7 +193,7 @@ export default function Parent() {
               );
             })}
           </tbody>
-        </table>
+        </Tablestyle>
       </Outputarea>
     </div>
   );

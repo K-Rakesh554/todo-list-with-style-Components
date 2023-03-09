@@ -1,5 +1,6 @@
 import React, { ChangeEvent, Fragment, useRef } from 'react';
 import { Itask } from '../interface';
+
 import './style2.css';
 
 interface Props {
@@ -24,6 +25,7 @@ function ToDoItem({ task, tasktodelete, tasktoedit, handleCheck }: Props) {
   return (
     <tr>
       <td>
+     
         <div className="form-check">
           <input
             className="form-check-input"
@@ -33,7 +35,7 @@ function ToDoItem({ task, tasktodelete, tasktoedit, handleCheck }: Props) {
             onChange={checkbutton}
           />
           {task.isComplete ? (
-            <label className="form-check-label-true">{task.taskname}</label>
+            <label>{task.taskname}</label>
           ) : (
             <label>{task.taskname}</label>
           )}
