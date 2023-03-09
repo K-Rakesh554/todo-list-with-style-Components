@@ -10,16 +10,16 @@ display: flex;
   border-radius: 5px;
   padding: 1px;
   color: aliceblue;
-  font-family: Lato;
+
   padding: 0.25em 1em;
   border: 2px solid #25CCF7;
 
   img{
-    width:70px;
+    width:80px;
     height:70px;
     border-radius:10px;
     margin:10px;
-    border: 2px solid darkblue;
+    border: 2px inset aqua;
     
   }
 `;
@@ -30,6 +30,7 @@ font-size: xx-large;
   margin-left: 100px;
   background-color: #1B9CFC;
   text-decoration:underline;
+  font-family: Lato;
 
 `;
 
@@ -37,6 +38,7 @@ export const DateDisplay = styled.h3`
 background-color: #1B9CFC;
 margin:10px;
 position:relative;
+font-family: Lato;
 }
 `;
 

@@ -10,6 +10,7 @@ import {
   InputLabel,
   Inputsection,
 } from '../Styled components/inputarea';
+import { Outputarea } from '../Styled components/outputarea';
 
 export default function Parent() {
   let [todolist, setToDoList] = useState<Itask[]>([]);
@@ -76,7 +77,7 @@ export default function Parent() {
       task.current.value = '';
       deadline.current.value = '0';
       Identity.current = null;
-      document.getElementById('button').innerText = 'add-task';
+      document.getElementById('button').innerText = 'Add-Task';
     }
   }, [todolist, task.current, deadline.current]);
 
@@ -98,7 +99,7 @@ export default function Parent() {
     (taskidtoedit: number): void => {
       Identity.current = taskidtoedit;
 
-      document.getElementById('button').innerText = 'save-task';
+      document.getElementById('button').innerText = 'Save-Task';
 
       console.log(Identity.current);
       todolist.map((clickedForEdit) => {
@@ -160,7 +161,7 @@ export default function Parent() {
         ></Input>
 
         <AddTaskBtn onClick={handledatapush} id="button">
-          Add-task
+          Add-Task
         </AddTaskBtn>
 
         <img
@@ -170,7 +171,7 @@ export default function Parent() {
       </Inputsection>
 
       {/* outputarea */}
-      <div className="outputarea">
+      <Outputarea>
         <table id="task " cellPadding="20" cellSpacing="20">
           <thead id="tablehead">
             <tr>
@@ -193,7 +194,7 @@ export default function Parent() {
             })}
           </tbody>
         </table>
-      </div>
+      </Outputarea>
     </div>
   );
 }
