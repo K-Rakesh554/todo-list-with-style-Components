@@ -10,11 +10,16 @@ import {
   InputLabel,
   Inputsection,
 } from '../Styled components/inputarea';
-import { Outputarea, Tablestyle } from '../Styled components/outputarea';
+import {
+  Outputarea,
+  Tablestyle,
+  AllDel,
+  AllDone,
+} from '../Styled components/outputarea';
 
 export default function Parent() {
   let [todolist, setToDoList] = useState<Itask[]>([]);
-
+  console.log(todolist);
   const Identity = useRef(null);
 
   // task and deadline
@@ -32,8 +37,7 @@ export default function Parent() {
   // };
   //--------------------***--------------
 
-  // here event that is occuring is of type htmlInputelement which converts inputdata into
-  //its respective types as event is of type generic event
+  // here event that is occuring is of type htmlInputelement which converts inputdata into its respective types as event is of type generic event
   // hence the variable to which u assign should also be of type generic event
 
   const handledatadisplay = useCallback(
@@ -71,8 +75,6 @@ export default function Parent() {
           isComplete: false,
         };
         setToDoList([...todolist, newtask]);
-
-        console.log(todolist);
       }
       task.current.value = '';
       deadline.current.value = '0';
@@ -80,19 +82,6 @@ export default function Parent() {
       document.getElementById('button').innerText = 'Add-Task';
     }
   }, [todolist, task.current, deadline.current]);
-
-  // handler to delete data
-  const handledelete = useCallback(
-    (tasknametodelete: number): void => {
-      if (Identity.current == null)
-        setToDoList(
-          todolist.filter((task) => {
-            return task.ID !== tasknametodelete;
-          })
-        );
-    },
-    [todolist]
-  );
 
   // handle edit data
   const handleEdit = useCallback(
@@ -111,6 +100,26 @@ export default function Parent() {
     },
     [Identity.current, todolist]
   );
+
+  // handler to delete data
+  const handledelete = useCallback(
+    (tasknametodelete: number): void => {
+      if (Identity.current == null)
+        setToDoList(
+          todolist.filter((task) => {
+            return task.ID !== tasknametodelete;
+          })
+        );
+    },
+    [todolist]
+  );
+  //handler to delete all data
+
+  const handledeleteall = useCallback(() => {
+    if (todolist.length != 0) {
+      setToDoList((todolist = []));
+    }
+  }, [todolist]);
 
   //handle checkbox toggle
   const handleCheckbox = useCallback(
@@ -148,7 +157,6 @@ export default function Parent() {
         ></Input>
 
         <InputLabel>
-          {' '}
           <label> BALL-PARK YOUR GOAL:</label>{' '}
         </InputLabel>
         <Input
@@ -175,9 +183,16 @@ export default function Parent() {
         <Tablestyle cellPadding="20" cellSpacing="20">
           <thead>
             <tr>
+              <th>
+                {' '}
+                <AllDone type="checkbox"></AllDone> All Done
+              </th>
               <th>Task</th>
               <th>Days to Complete</th>
-              <th>Edit or Delete</th>
+              <th>
+                Edit or Delete
+                <AllDel onClick={handledeleteall}>Delete All</AllDel>
+              </th>
             </tr>
           </thead>
           <tbody id="todo">

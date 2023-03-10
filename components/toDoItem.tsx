@@ -1,7 +1,11 @@
 import React, { ChangeEvent, Fragment, useRef } from 'react';
 import { Itask } from '../interface';
-
-import './style2.css';
+import {
+  CheckInput,
+  DeleteBtn,
+  EditBtn,
+  LabelText,
+} from '../Styled components/outputarea';
 
 interface Props {
   task: Itask;
@@ -22,53 +26,29 @@ function ToDoItem({ task, tasktodelete, tasktoedit, handleCheck }: Props) {
   const checkbutton = (e: ChangeEvent<HTMLInputElement>): void => {
     handleCheck(task.ID, e.target.checked);
   };
+
   return (
     <tr>
       <td>
-     
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-            onChange={checkbutton}
-          />
-          {task.isComplete ? (
-            <label>{task.taskname}</label>
-          ) : (
-            <label>{task.taskname}</label>
-          )}
-        </div>
+        <CheckInput type="checkbox" onChange={checkbutton}></CheckInput>
+      </td>
+      <td>
+        <LabelText bool={task.isComplete ? '1' : '0'}>
+          {task.taskname}
+        </LabelText>
+      </td>
+      <td>
+        <LabelText bool={task.isComplete ? '1' : '0'}>
+          days left: {task.daystocomplete}
+        </LabelText>
       </td>
 
-      {task.isComplete ? (
-        <Fragment>
-          <td className="form-check-label-true">
-            {' '}
-            days left: {task.daystocomplete}{' '}
-          </td>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <td>days left: {task.daystocomplete} </td>
-        </Fragment>
-      )}
-      {task.isComplete ? (
-        <td>
-          {' '}
-          <button onClick={buttonedit} disabled>
-            edit task{' '}
-          </button>
-          <button onClick={buttondelete}>delete task</button>
-        </td>
-      ) : (
-        <td>
-          {' '}
-          <button onClick={buttonedit}>edit task </button>
-          <button onClick={buttondelete}>delete task</button>{' '}
-        </td>
-      )}
+      <td>
+        <EditBtn bool={task.isComplete} onClick={buttonedit}>
+          edit task{' '}
+        </EditBtn>
+        <DeleteBtn onClick={buttondelete}>delete task</DeleteBtn>
+      </td>
     </tr>
   );
 }

@@ -12,7 +12,7 @@ align-content-space-around;
 border: 2px solid #25CCF7;
 
 &:hover{
-  background-color: #48dbfb;
+  background-color: #54a0ff;
   transition-duration: 0.1s;
   transition-delay: 0.2s;
   transition-timing-function: ease-in-out;
@@ -37,7 +37,7 @@ export const InputLabel = styled.label`
   display:block;
   position:relative;
   left:18%;
-  
+  font-style:italic;
 `;
 
 export const Input = styled.input.attrs((props) => ({
@@ -54,7 +54,7 @@ left:20%;
 width:25%;
 
 &:hover{
-  background-color:#1B9CFC;
+  background-color:#3742fa;
   color:white;
 }
 `;
@@ -79,5 +79,3 @@ background-color:#74b9ff;
   transition-delay: 1s;
 }
 `;
-
-// https://4kwallpapers.com/images/wallpapers/todo-list-nothing-2048x1536-10079.jpg
