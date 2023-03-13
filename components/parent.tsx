@@ -152,10 +152,14 @@ export default function Parent() {
 
   const handleCheckAll = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
-      setGlobalCheck(e.target.checked);
-
       const allCheckedArray = todolist.map((item) => {
         item.isComplete = e.target.checked;
+
+        if (item.isComplete === true) {
+          setGlobalCheck(true);
+        } else {
+          setGlobalCheck(false);
+        }
 
         return item;
       });
