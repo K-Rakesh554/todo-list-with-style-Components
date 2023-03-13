@@ -30,15 +30,19 @@ function ToDoItem({ task, tasktodelete, tasktoedit, handleCheck }: Props) {
   return (
     <tr>
       <td>
-        <CheckInput type="checkbox" onChange={checkbutton}></CheckInput>
+        <CheckInput
+          type="checkbox"
+          onChange={checkbutton}
+          bool={task.isComplete}
+        ></CheckInput>
       </td>
       <td>
-        <LabelText bool={task.isComplete ? '1' : '0'}>
+        <LabelText bool={task.isComplete ? '1' : 'default'}>
           {task.taskname}
         </LabelText>
       </td>
       <td>
-        <LabelText bool={task.isComplete ? '1' : '0'}>
+        <LabelText bool={task.isComplete ? '1' : 'default'}>
           days left: {task.daystocomplete}
         </LabelText>
       </td>

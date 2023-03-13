@@ -47,8 +47,10 @@ font-family: Arial, Helvetica, sans-serif;
 `;
 
 export const CheckInput = styled.input.attrs((props) => ({
-  type: props.type || 'text',
+  type: props.type || 'checkbox',
+  checked: props.bool,
 }))`
+
 vertical-align:center;
 width:20px;
 height:20px;
@@ -58,7 +60,6 @@ position:absolute;
 `;
 
 export const AllDone = styled(CheckInput)`
-
 left:110px;
 `;
 
@@ -70,37 +71,33 @@ display:block;
 font-size:1em;
 margin:1em;
 padding:2px 2px;
-border:2px outset #00a8ff;
+border:2px insit #00a8ff;
 border-radius:5px;
 background-color:crimson;
-color:white;
+color:black;
 
 &:hover{
-  color:black;
-  background-color:red;
-  transition-duration: 0.1;
-  transition-timing-function: ease-in;
-  transition-delay: 1s;
+  color:white;
 }
 `;
 
 export const LabelText = styled.span`
+text-align:center;
+color:black;
+
 ${(props) => {
   switch (props.bool) {
-    case '0':
-      return `
-      color:black;
-      text-align:center;
-      }
-      `;
     case '1':
       return `
-        color:black;
         text-decoration:line-through;
         background-color:#227093;`;
+    default:
+      return `
+      text-decoration:none;
+      background-color:none;
+      `;
   }
 }}
-
 `;
 
 export const EditBtn = styled.button.attrs((props) => ({

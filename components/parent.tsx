@@ -16,9 +16,12 @@ import {
   AllDel,
   AllDone,
 } from '../Styled components/outputarea';
+import GlobalStyle from 'styled-components/native/dist/models/GlobalStyle';
 
 export default function Parent() {
   let [todolist, setToDoList] = useState<Itask[]>([]);
+  let [globalCheck, setGlobalCheck] = useState<boolean>(false);
+
   console.log(todolist);
   const Identity = useRef(null);
 
@@ -53,7 +56,7 @@ export default function Parent() {
   const handledatapush = useCallback(() => {
     const genID = Date.now();
 
-    if (task.current.value == '' || deadline.current.value == '0') {
+    if (task.current.value == '') {
       alert('please fill all the fields');
     } else {
       if (Identity.current) {
@@ -73,6 +76,7 @@ export default function Parent() {
           daystocomplete: deadline.current.value,
           ID: genID,
           isComplete: false,
+          isAllChecked: false,
         };
         setToDoList([...todolist, newtask]);
       }
@@ -126,16 +130,38 @@ export default function Parent() {
     (taskIdcheck: number, checkboxval: boolean): void => {
       if (Identity.current === null) {
         checkid.current = taskIdcheck;
+        if (checkboxval === false) {
+          setGlobalCheck(false);
+        } else {
+          setGlobalCheck(true);
+        }
         const newarr = todolist.map((item) => {
           if (item.ID === checkid.current) {
             item.isComplete = checkboxval;
           }
+
           return item;
         });
         setToDoList(newarr);
       }
     },
     [todolist, checkid.current]
+  );
+
+  //handler for global checkbox toggle
+
+  const handleCheckAll = useCallback(
+    (e: ChangeEvent<HTMLInputElement>): void => {
+      setGlobalCheck(e.target.checked);
+
+      const allCheckedArray = todolist.map((item) => {
+        item.isComplete = e.target.checked;
+
+        return item;
+      });
+      setToDoList(allCheckedArray);
+    },
+    [todolist, globalCheck]
   );
 
   return (
@@ -185,8 +211,14 @@ export default function Parent() {
             <tr>
               <th>
                 {' '}
-                <AllDone type="checkbox"></AllDone> All Done
+                <AllDone
+                  type="checkbox"
+                  onChange={handleCheckAll}
+                  checked={globalCheck}
+                ></AllDone>{' '}
+                All Done
               </th>
+
               <th>Task</th>
               <th>Days to Complete</th>
               <th>
