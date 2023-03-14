@@ -48,7 +48,6 @@ font-family: Arial, Helvetica, sans-serif;
 
 export const CheckInput = styled.input.attrs((props) => ({
   type: props.type || 'checkbox',
-  checked: props.bool,
 }))`
 
 vertical-align:center;

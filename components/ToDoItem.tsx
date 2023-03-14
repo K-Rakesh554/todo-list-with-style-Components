@@ -33,7 +33,7 @@ function ToDoItem({ task, tasktodelete, tasktoedit, handleCheck }: Props) {
         <CheckInput
           type="checkbox"
           onChange={checkbutton}
-          bool={task.isComplete}
+          checked={task.isComplete}
         ></CheckInput>
       </td>
       <td>

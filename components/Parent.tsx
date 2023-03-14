@@ -16,7 +16,6 @@ import {
   AllDel,
   AllDone,
 } from '../Styled components/outputarea';
-import GlobalStyle from 'styled-components/native/dist/models/GlobalStyle';
 
 export default function Parent() {
   let [todolist, setToDoList] = useState<Itask[]>([]);
@@ -76,7 +75,6 @@ export default function Parent() {
           daystocomplete: deadline.current.value,
           ID: genID,
           isComplete: false,
-          isAllChecked: false,
         };
         setToDoList([...todolist, newtask]);
       }
@@ -130,21 +128,51 @@ export default function Parent() {
     (taskIdcheck: number, checkboxval: boolean): void => {
       if (Identity.current === null) {
         checkid.current = taskIdcheck;
-        if (checkboxval === false) {
-          setGlobalCheck(false);
-        } else {
-          setGlobalCheck(true);
-        }
+
         const newarr = todolist.map((item) => {
           if (item.ID === checkid.current) {
             item.isComplete = checkboxval;
           }
-
           return item;
         });
+
         setToDoList(newarr);
+
+        // let newArrLength: number = newarr.length;
+        // function globalCheck(newarr: {
+        //   taskname: string;
+        //   daystocomplete: string;
+        //   ID: number;
+        //   isComplete: boolean;
+        // }) {
+        //   return newarr.isComplete === true;
+        // }
+
+        // let filteredArray = newarr.filter(globalCheck);
+
+        // let filteredArrayLength = filteredArray.length;
+
+        // if (newArrLength === filteredArrayLength) {
+        //   setGlobalCheck(true);
+        // } else {
+        //   setGlobalCheck(false);
+        // }
+
+        //using array.every
+
+        let globalCheck = (element: {
+          taskname: string;
+          daystocomplete: string;
+          ID: number;
+          isComplete: boolean;
+        }): boolean => {
+          return element.isComplete === true;
+        };
+        if (newarr.every(globalCheck) === true) setGlobalCheck(true);
+        else setGlobalCheck(false);
       }
     },
+
     [todolist, checkid.current]
   );
 
