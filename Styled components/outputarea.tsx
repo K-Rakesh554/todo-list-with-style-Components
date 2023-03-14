@@ -64,7 +64,7 @@ left:110px;
 
 export const AllDel = styled.button`
 position:absolute;
-top:102%;
+top:114%;
 right:52px;
 display:block;
 font-size:1em;
