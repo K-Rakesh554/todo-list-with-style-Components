@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, ChangeEvent, useRef, useCallback } from 'react';
 
 import { Itask } from '../interface';
-import ToDoItem from './toDoItem';
+import ListItems from './listItems';
 import Navbar from './navbar';
 import {
   AddTaskBtn,
@@ -17,7 +17,7 @@ import {
   AllDone,
 } from '../Styled components/outputarea';
 
-export default function Parent() {
+export default function ToDoList() {
   let [todolist, setToDoList] = useState<Itask[]>([]);
   let [globalCheck, setGlobalCheck] = useState<boolean>(false);
   let [buttonText, setButtonText] = useState<string>('Add-Task');
@@ -244,10 +244,10 @@ export default function Parent() {
               </th>
             </tr>
           </thead>
-          <tbody id="todo">
+          <tbody>
             {todolist.map((task: Itask, id) => {
               return (
-                <ToDoItem
+                <ListItems
                   task={task}
                   key={id}
                   tasktodelete={handledelete}

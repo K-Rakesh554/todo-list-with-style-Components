@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AddTaskBtn } from '../Styled components/inputarea';
+
 export const Outputarea = styled.div`
 
 justify-content:center;
@@ -68,7 +68,7 @@ display:block;
 width:80px;
 font-size:1em;
 margin-left:12em;
-margin-top:-2em;
+margin-top:-1.5em;
 padding:2px 2px;
 border:2px inset #00a8ff;
 border-radius:5px;

@@ -1,4 +1,5 @@
-import React, { ChangeEvent, Fragment, useRef } from 'react';
+import * as React from 'react';
+import { ChangeEvent } from 'react';
 import { Itask } from '../interface';
 import {
   CheckInput,
@@ -14,7 +15,7 @@ interface Props {
   handleCheck(taskID: number, checked: boolean): void;
 }
 
-function ToDoItem({ task, tasktodelete, tasktoedit, handleCheck }: Props) {
+function ListItems({ task, tasktodelete, tasktoedit, handleCheck }: Props) {
   const buttonedit = (): void => {
     tasktoedit(task.ID);
   };
@@ -56,4 +57,4 @@ function ToDoItem({ task, tasktodelete, tasktoedit, handleCheck }: Props) {
     </tr>
   );
 }
-export default React.memo(ToDoItem);
+export default React.memo(ListItems);
