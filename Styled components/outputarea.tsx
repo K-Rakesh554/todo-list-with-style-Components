@@ -63,17 +63,17 @@ left:110px;
 `;
 
 export const AllDel = styled.button`
-position:absolute;
-top:114%;
-right:52px;
+
 display:block;
+width:80px;
 font-size:1em;
-margin:1em;
+margin-left:12em;
+margin-top:-2em;
 padding:2px 2px;
-border:2px insit #00a8ff;
+border:2px inset #00a8ff;
 border-radius:5px;
 background-color:crimson;
-color:black;
+color:white;
 
 &:hover{
   color:white;

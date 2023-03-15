@@ -20,27 +20,12 @@ import {
 export default function Parent() {
   let [todolist, setToDoList] = useState<Itask[]>([]);
   let [globalCheck, setGlobalCheck] = useState<boolean>(false);
+  let [buttonText, setButtonText] = useState<string>('Add-Task');
 
-  console.log(todolist);
   const Identity = useRef(null);
-
-  // task and deadline
   const task = useRef<HTMLInputElement>(null);
   const deadline = useRef<HTMLInputElement>(null);
-
-  //for check value
-
   const checkid = useRef(null);
-
-  // handler to set data
-  // const handledatadisplay = (event: ChangeEvent<HTMLInputElement>): void => {
-  //   if (event.target.name === 'task') setTask(event.target.value);
-  //   else setdeadline(Number(event.target.value));
-  // };
-  //--------------------***--------------
-
-  // here event that is occuring is of type htmlInputelement which converts inputdata into its respective types as event is of type generic event
-  // hence the variable to which u assign should also be of type generic event
 
   const handledatadisplay = useCallback(
     (event: ChangeEvent<HTMLInputElement>): void => {
@@ -50,11 +35,9 @@ export default function Parent() {
     },
     []
   );
-
-  //handler to push data
+  //*-----------------------------------------------------*//
   const handledatapush = useCallback(() => {
     const genID = Date.now();
-
     if (task.current.value == '') {
       alert('please fill all the fields');
     } else {
@@ -67,7 +50,6 @@ export default function Parent() {
           }
           return item;
         });
-
         setToDoList(newarr);
       } else {
         const newtask = {
@@ -81,16 +63,17 @@ export default function Parent() {
       task.current.value = '';
       deadline.current.value = '0';
       Identity.current = null;
-      document.getElementById('button').innerText = 'Add-Task';
+      setButtonText('Add-Task');
     }
   }, [todolist, task.current, deadline.current]);
 
-  // handle edit data
+  //*-----------------------------------------------------------*//
+
   const handleEdit = useCallback(
     (taskidtoedit: number): void => {
       Identity.current = taskidtoedit;
 
-      document.getElementById('button').innerText = 'Save-Task';
+      setButtonText('Save-Task');
 
       console.log(Identity.current);
       todolist.map((clickedForEdit) => {
@@ -103,7 +86,8 @@ export default function Parent() {
     [Identity.current, todolist]
   );
 
-  // handler to delete data
+  //*-----------------------------------------------------*//
+
   const handledelete = useCallback(
     (tasknametodelete: number): void => {
       if (Identity.current == null)
@@ -115,7 +99,8 @@ export default function Parent() {
     },
     [todolist]
   );
-  //handler to delete all data
+
+  //*-----------------------------------------------------*//
 
   const handledeleteall = useCallback(() => {
     if (todolist.length != 0) {
@@ -123,7 +108,8 @@ export default function Parent() {
     }
   }, [todolist]);
 
-  //handle checkbox toggle
+  //*-----------------------------------------------------*//
+
   const handleCheckbox = useCallback(
     (taskIdcheck: number, checkboxval: boolean): void => {
       if (Identity.current === null) {
@@ -176,7 +162,7 @@ export default function Parent() {
     [todolist, checkid.current]
   );
 
-  //handler for global checkbox toggle
+  //*-----------------------------------------------------*//
 
   const handleCheckAll = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
@@ -195,6 +181,7 @@ export default function Parent() {
     },
     [todolist, globalCheck]
   );
+  //*-----------------------------------------------------*//
 
   return (
     <div>
@@ -226,9 +213,7 @@ export default function Parent() {
           name="deadline"
         ></Input>
 
-        <AddTaskBtn onClick={handledatapush} id="button">
-          Add-Task
-        </AddTaskBtn>
+        <AddTaskBtn onClick={handledatapush}>{buttonText}</AddTaskBtn>
 
         <img
           src="https://www.actitime.com/wp-content/uploads/2020/03/best-to-do-list-apps-to-stop-forgetting-things.png"
